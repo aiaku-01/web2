@@ -1,23 +1,31 @@
-import { createSupabaseServerClient } from '@/lib/server/supabase'
-import { redirect } from 'next/navigation'
+"use client"
 
-export default async function DashboardPage() {
-  const supabase = createSupabaseServerClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+import { useEffect, useState } from "react"
+import { supabase } from "@/lib/supabase"
+import { useRouter } from "next/navigation"
 
-  if (!user) {
-    redirect('/login')
-  }
+export default function Dashboard() {
+  const [user, setUser] = useState<any>(null)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!supabase) return
+
+    supabase.auth.getUser().then(({ data }) => {
+      if (!data.user) {
+        router.push("/login")
+      } else {
+        setUser(data.user)
+      }
+    })
+  }, [router])
+
+  if (!user) return <p className="p-10 text-white">Loading...</p>
 
   return (
-    <main className="min-h-screen bg-black text-white p-10">
+    <div className="min-h-screen bg-black text-white p-10">
       <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p>Welcome, {user.email}</p>
-      <form action="/logout">
-        <button className="mt-4 px-4 py-2 bg-white text-black rounded">Logout</button>
-      </form>
-    </main>
+      <p>Email: {user.email}</p>
+    </div>
   )
 }
