@@ -1,6 +1,14 @@
 import { supabase } from "@/lib/supabase";
 
 export default async function Home() {
+  if (!supabase) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <h1>Supabase ENV belum tersedia</h1>
+      </main>
+    );
+  }
+
   const { data, error } = await supabase
     .from("test")
     .select("*");
