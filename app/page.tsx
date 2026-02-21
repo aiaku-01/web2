@@ -1,12 +1,16 @@
-export default function Home() {
+import { supabase } from "@/lib/supabase";
+
+export default async function Home() {
+  const { data, error } = await supabase
+    .from("test")
+    .select("*");
+
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
-      <h1 className="text-5xl font-bold mb-6">
-        WEB2 IS LIVE 🚀
+      <h1 className="text-3xl font-bold mb-4">
+        Supabase Connected 🚀
       </h1>
-      <p className="text-xl text-gray-400">
-        Proyek terbesar sedang dibangun.
-      </p>
+      <pre>{JSON.stringify({ data, error }, null, 2)}</pre>
     </main>
   );
 }
