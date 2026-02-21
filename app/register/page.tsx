@@ -6,55 +6,41 @@ import { supabase } from "@/lib/supabase";
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   async function handleRegister(e: any) {
     e.preventDefault();
-
-    if (!supabase) {
-      alert("Supabase ENV belum tersedia");
-      return;
-    }
 
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
 
-    console.log(data, error);
-    alert(error ? error.message : "User created!");
+    if (error) setMessage(error.message);
+    else setMessage("Registered! Check email (optional).");
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-black text-white">
-      <form
-        onSubmit={handleRegister}
-        className="bg-zinc-900 p-8 rounded-xl w-80 space-y-4"
-      >
-        <h1 className="text-xl font-bold text-center">Register</h1>
-
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <form onSubmit={handleRegister} className="bg-white p-6 rounded shadow-md w-80">
+        <h2 className="text-xl font-bold mb-4">Register</h2>
         <input
           type="email"
           placeholder="Email"
-          className="w-full p-2 rounded bg-zinc-800"
+          className="border p-2 w-full mb-2"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-
         <input
           type="password"
           placeholder="Password"
-          className="w-full p-2 rounded bg-zinc-800"
+          className="border p-2 w-full mb-2"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-
-        <button
-          type="submit"
-          className="w-full bg-white text-black p-2 rounded font-semibold"
-        >
-          Create Account
-        </button>
+        <button className="bg-blue-600 text-white p-2 w-full rounded">Register</button>
+        {message && <p className="mt-2 text-sm">{message}</p>}
       </form>
-    </main>
+    </div>
   );
 }

@@ -1,24 +1,13 @@
-import { supabase } from "@/lib/supabase";
-
-export default async function Home() {
-  if (!supabase) {
-    return (
-      <main className="min-h-screen flex items-center justify-center">
-        <h1>Supabase ENV belum tersedia</h1>
-      </main>
-    );
-  }
-
-  const { data, error } = await supabase
-    .from("test")
-    .select("*");
-
+export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold mb-4">
-        Supabase Connected 🚀
-      </h1>
-      <pre>{JSON.stringify({ data, error }, null, 2)}</pre>
+    <main className="text-center min-h-screen p-8 bg-gray-100">
+      <h1 className="text-3xl font-bold">Welcome to Your Big Frontend Project</h1>
+      <p className="mt-4 text-lg">This is the foundation of your web app.</p>
+      <div className="mt-8 space-x-4">
+        <a href="/login" className="bg-blue-600 text-white px-4 py-2 rounded">Login</a>
+        <a href="/register" className="bg-green-600 text-white px-4 py-2 rounded">Register</a>
+        <a href="/dashboard" className="bg-gray-700 text-white px-4 py-2 rounded">Dashboard</a>
+      </div>
     </main>
   );
 }
