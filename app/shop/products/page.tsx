@@ -1,8 +1,8 @@
-export default function ProductList() {
+export default function Products() {
   return (
-    <div>
+    <div className="space-y-4">
       <h1 className="text-2xl font-bold">Products</h1>
-      <p>Product listing page.</p>
+      <p>Product list with filters.</p>
     </div>
   );
 }

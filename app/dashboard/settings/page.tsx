@@ -1,8 +1,8 @@
 export default function Settings() {
   return (
-    <div>
+    <div className="space-y-4">
       <h1 className="text-2xl font-bold">Settings</h1>
-      <p>Manage your account and preferences here.</p>
+      <p>User settings, preferences, security options.</p>
     </div>
   );
 }

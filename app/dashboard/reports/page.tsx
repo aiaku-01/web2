@@ -1,8 +1,8 @@
 export default function Reports() {
   return (
-    <div>
+    <div className="space-y-4">
       <h1 className="text-2xl font-bold">Reports</h1>
-      <p>Visual analytics and reports live here.</p>
+      <p>Report tables, export options, filters.</p>
     </div>
   );
 }

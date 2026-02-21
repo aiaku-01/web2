@@ -1,8 +1,8 @@
 export default function Checkout() {
   return (
-    <div>
+    <div className="space-y-4">
       <h1 className="text-2xl font-bold">Checkout</h1>
-      <p>Enter payment and shipping details here.</p>
+      <p>Final purchase process here.</p>
     </div>
   );
 }

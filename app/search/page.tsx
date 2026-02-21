@@ -1,8 +1,8 @@
-export default function SearchPage() {
+export default function Search() {
   return (
     <div>
       <h1 className="text-2xl font-bold">Search</h1>
-      <p>Search results will appear here.</p>
+      <p>Global search results displayed here.</p>
     </div>
   );
 }
